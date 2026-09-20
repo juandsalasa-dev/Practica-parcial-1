@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tienda {
@@ -14,20 +15,19 @@ public class Tienda {
      private List<Producto> listTiendaProductos;
 
      /**
-      * Metodo constructor de la clase Tienda
-      * @param nombre de la Tienda
-      * @param horario de la Tienda
-      * @param direccion de la Tienda
-      * @param cantidad de empleados de la Tienda
-      * @param teléfono de la Tienda
-      * @param nit de la Tienda
+      *
+      * @param nombre de la tienda
+      * @param horario de la tienda
+      * @param direccion de la tienda
+      * @param cantEmpleados de la tienda
+      * @param telefono de la tienda
+      * @param nit de la tienda
       */
-     public Universidad(String nombre, String horario, String direccion, int cantEmpleados, int telefono, int nit){
+     public Tienda(String nombre, String horario, String direccion, int cantEmpleados, int telefono, int nit){
           this.direccion = direccion;
           this.nombre = nombre;
           this.telefono = telefono;
           this.nit = nit;
-
           this.listTiendaClientes = new ArrayList();
           this.listTiendaPedidos = new ArrayList();
           this.listTiendaPagos = new ArrayList();

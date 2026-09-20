@@ -26,46 +26,39 @@ public class Carrito {
     }
 
     //GETTERS & SETTERS
-    public int getCantidad(){
+
+    public int getCantidad() {
         return cantidad;
     }
-    public void setCantidad(int Cantidad){
+
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
-    public int getPrecioAplicado(){
+    public double getPrecioAplicado() {
         return precioAplicado;
-    }
-    public void setPrecioAplicado(int precioAplicado){
-        this.precioAplicado = precioAplicado;
-    }
-
-    public int getCantidad(){
-        return cantidad;
-    }
-    public void setCantidad(int Cantidad){
-        this.cantidad = cantidad;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
     }
 
     public void setPrecioAplicado(double precioAplicado) {
         this.precioAplicado = precioAplicado;
     }
 
+    public double getSubtotal() {
+        return subtotal;
+    }
+
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public List<Producto> getListCarritoProductos() {
+        return listCarritoProductos;
     }
 
     public void setListCarritoProductos(List<Producto> listCarritoProductos) {
         this.listCarritoProductos = listCarritoProductos;
     }
 
-    public List<Producto> getListCarritoProductos() {
-        return listCarritoProductos;
-    }
 
     @java.lang.Override
     public java.lang.String toString() {

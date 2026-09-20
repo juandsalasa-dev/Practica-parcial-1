@@ -21,7 +21,7 @@ public class Cliente {
      * @param telefono del cliente
      * @param direccion del cliente
      */
-    public Estudiante(String nombre, int identificacion, String correo, int telefono, String direccion;){
+    public Cliente(String nombre, int identificacion, String correo, int telefono, String direccion){
         this.nombre = nombre;
         this.direccion = direccion;
         this.identificacion = identificacion;
