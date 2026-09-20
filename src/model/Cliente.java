@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Cliente {
 
     private String nombre;
@@ -7,4 +9,6 @@ public class Cliente {
     private String correo;
     private int telefono;
     private String direccion;
+
+    private List<Pedido> listClientePedidos;
 }
