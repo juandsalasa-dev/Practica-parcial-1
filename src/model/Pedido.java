@@ -1,12 +1,12 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
     //Atributos de Pedido
     private int numeroPedido;
-    private String fechaCreacion;
-    private boolean estado;
+    private String fechaCreacion, estado;
     private double valorTotal;
 
     //Relaciones de pedido -> carrito, pedido -> cliente, pedido -> pago
@@ -15,21 +15,19 @@ public class Pedido {
     private Pago pago;
 
     /**
-     * Méetodo constructor de Pedido
+     * metodo constructor del pedido
      * @param numeroPedido
-     * @param fechaCreacion
-     * @param estado
-     * @param valorTotal
-     * @param listPedidoCarrito
-     * @param cliente
-     * @param pago
+     * @param fechaCreacion del pedido
+     * @param estado del pedido
+     * @param valorTotal del pedido
      */
-    public Pedido(int numeroPedido, String fechaCreacion, boolean estado, double valorTotal, List<Carrito> listPedidoCarrito, Cliente cliente, Pago pago) {
+
+    public Pedido(int numeroPedido, String fechaCreacion, String estado, double valorTotal) {
         this.numeroPedido = numeroPedido;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
         this.valorTotal = valorTotal;
-        this.listPedidoCarrito = listPedidoCarrito;
+        this.listPedidoCarrito = new ArrayList<>();
         this.cliente = cliente;
         this.pago = pago;
     }
@@ -44,7 +42,7 @@ public class Pedido {
         return fechaCreacion;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
@@ -72,7 +70,7 @@ public class Pedido {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

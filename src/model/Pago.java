@@ -3,9 +3,8 @@ package model;
 public class Pago {
     //Atributos de pago
     private String fechaPago;
-    private String metodoPago;
+    private String metodoPago, estadoTransaccion;
     private double valorPagado;
-    private boolean estadoTransaccion;
 
     // Relaciones Pedido -> Pago
     private Pedido pedido;
@@ -16,14 +15,13 @@ public class Pago {
      * @param metodoPago
      * @param valorPagado
      * @param estadoTransaccion
-     * @param pedido
      */
-    public Pago(String fechaPago, String metodoPago, double valorPagado, boolean estadoTransaccion, Pedido pedido) {
+    public Pago(String fechaPago, String metodoPago, double valorPagado,String estadoTransaccion, Pedido pedido) {
         this.fechaPago = fechaPago;
         this.metodoPago = metodoPago;
         this.valorPagado = valorPagado;
         this.estadoTransaccion = estadoTransaccion;
-        this.pedido = pedido;
+        this.pedido=pedido;
     }
 
     //GETTERS & SETTERS
@@ -40,7 +38,7 @@ public class Pago {
         return valorPagado;
     }
 
-    public boolean isEstadoTransaccion() {
+    public String  getEstadoTransaccion() {
         return estadoTransaccion;
     }
 
@@ -60,7 +58,7 @@ public class Pago {
         this.valorPagado = valorPagado;
     }
 
-    public void setEstadoTransaccion(boolean estadoTransaccion) {
+    public void setEstadoTransaccion(String estadoTransaccion) {
         this.estadoTransaccion = estadoTransaccion;
     }
 

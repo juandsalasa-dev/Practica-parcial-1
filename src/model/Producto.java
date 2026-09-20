@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Producto {
@@ -12,20 +13,20 @@ public class Producto {
 
     /**
      * Método Constructor de Producto
-     * @param codigo
-     * @param precio
-     * @param cantDisponile
-     * @param nombre
-     * @param descripcion
-     * @param listProductoCarritos
+     * @param codigo del producto
+     * @param precio del producto
+     * @param cantDisponile del producto
+     * @param nombre del producto
+     * @param descripcion del producto
      */
-    public Producto(int codigo, int precio, int cantDisponile, String nombre, String descripcion, List<Carrito> listProductoCarritos) {
+    public Producto(int codigo, int precio, int cantDisponile, String nombre, String descripcion){
         this.codigo = codigo;
         this.precio = precio;
         this.cantDisponile = cantDisponile;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.listProductoCarritos = listProductoCarritos;
+
+        this.listProductoCarritos= new ArrayList<>();
     }
 
     //GETTERS & SETTERS
@@ -79,7 +80,7 @@ public class Producto {
     }
 
     @java.lang.Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Producto{" +
                 "codigo=" + codigo +
                 ", precio=" + precio +

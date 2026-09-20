@@ -1,11 +1,15 @@
+import model.Cliente;
+import model.Pedido;
+import model.Producto;
 import model.Tienda;
 import javax.swing.JOptionPane;
 
 public class Main {
     public static void main(String[] args) {
-        Tienda tienda = new Tienda("Inversiones Abelardo", "cuando el quiera abrir", "carrera 20", 69, 34161625, 10027);
-        int opcion2 = 0;
 
+        Tienda tienda = new Tienda("Inversiones Abelardo", "cuando el quiera abrir", "carrera 20", 69, 34161625, 10027);
+
+        int opcion2 = 0;
         while (opcion2 != 4) {
 
             try {
@@ -47,7 +51,9 @@ public class Main {
                     } else if (opcion3 == 2) {
                         int identificacion = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la identificación del cliente a buscar:"));
 
-                        tienda.mostrarCliente(identificacion);
+                        Cliente cliente = tienda.buscarCliente(identificacion);
+
+                        JOptionPane.showMessageDialog(null, cliente.toString());
 
                     } else if (opcion3 == 3) {
                         int identificacion = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la identificación del cliente a actualizar:"));
@@ -83,24 +89,26 @@ public class Main {
                         int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el código del producto:"));
                         String nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre del producto:");
                         String descripcion = JOptionPane.showInputDialog(null, "Ingrese la descripción del producto:");
-                        double precio = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el precio del producto:"));
+                        int precio = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el precio del producto:"));
                         int cantDisponible = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad disponible:"));
 
-                        tienda.crearProducto(codigo, nombre, descripcion, precio, cantDisponible);
+                        tienda.crearProducto(codigo,precio,cantDisponible,nombre, descripcion);
 
                     } else if (opcion3 == 2) {
                         int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el código del producto a consultar:"));
 
-                        tienda.mostrarProducto(codigo);
+                        Producto producto=tienda.buscarProducto(codigo);
+
+                        JOptionPane.showMessageDialog(null,producto.toString());
 
                     } else if (opcion3 == 3) {
                         int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el código del producto a actualizar:"));
                         String nuevoNombre = JOptionPane.showInputDialog(null, "Ingrese el nuevo nombre del producto:");
                         String nuevaDescripcion = JOptionPane.showInputDialog(null, "Ingrese la nueva descripción del producto:");
-                        double nuevoPrecio = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el nuevo precio:"));
+                        int nuevoPrecio = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el nuevo precio:"));
                         int nuevaCantDisponible = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la nueva cantidad disponible:"));
 
-                        tienda.actualizarProducto(codigo, nuevoNombre, nuevaDescripcion, nuevoPrecio, nuevaCantDisponible);
+                        tienda.actualizarProducto(codigo, nuevoPrecio, nuevaCantDisponible,nuevoNombre,nuevaDescripcion);
 
                     } else if (opcion3 == 4) {
                         int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el código del producto a eliminar:"));
@@ -130,18 +138,21 @@ public class Main {
                         int clienteId = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la identificación del cliente asociado:"));
                         String metodoPago = JOptionPane.showInputDialog(null, "Ingrese el método de pago:");
 
-                        tienda.crearPedido(numeroPedido, fechaCreacion, estado, clienteId, metodoPago);
+                        tienda.crearPedido(numeroPedido, fechaCreacion, estado, clienteId);
 
                     } else if (opcion3 == 2) {
                         int numeroPedido = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número de pedido a consultar:"));
 
-                        tienda.mostrarPedido(numeroPedido);
+                        Pedido pedido=tienda.buscarPedido(numeroPedido);
+
+                        JOptionPane.showMessageDialog(null, pedido.toString());
 
                     } else if (opcion3 == 3) {
                         int numeroPedido = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número de pedido a actualizar:"));
                         String nuevoEstado = JOptionPane.showInputDialog(null, "Ingrese el nuevo estado del pedido:");
+                        int nuevoValorTotal= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el nuevo valor total del pedido"));
 
-                        tienda.actualizarPedido(numeroPedido, nuevoEstado);
+                        tienda.actualizarPedido(numeroPedido, nuevoEstado,nuevoValorTotal);
 
                     } else if (opcion3 == 4) {
                         int numeroPedido = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el número de pedido a eliminar:"));

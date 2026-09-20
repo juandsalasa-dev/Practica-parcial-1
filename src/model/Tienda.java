@@ -13,9 +13,10 @@ public class Tienda {
      private List<Pedido> listTiendaPedidos;
      private List<Pago> listTiendaPagos;
      private List<Producto> listTiendaProductos;
+     private List<Carrito> listTiendacarrito;
 
      /**
-      *
+      *Metdodo constructor de la tienda
       * @param nombre de la tienda
       * @param horario de la tienda
       * @param direccion de la tienda
@@ -32,30 +33,43 @@ public class Tienda {
           this.listTiendaPedidos = new ArrayList();
           this.listTiendaPagos = new ArrayList();
           this.listTiendaProductos = new ArrayList();
+          this.listTiendacarrito= new ArrayList<>();
      }
 
-     //PRODUCTOS
+     // METODOS CRUD PRODUCTOS
+
+
      /**
-      * Método para crear un producto
+      * metodo para crear un producto
+      * @param codigo del producto
+      * @param precio del producto
+      * @param cantDisponible del producto
+      * @param nombre del producto
+      * @param descripcion del producto
+      * @return
       */
+
      public boolean crearProducto(int codigo, int precio, int cantDisponible, String nombre, String descripcion) {
           boolean creado = false;
           Producto producto = buscarProducto(codigo);
           if (producto == null) {
-               Producto produ = new Producto(codigo, precio, cantDisponible, nombre, descripcion);
-               listProductos.add(produ);
+               Producto produ = new Producto(codigo,precio, cantDisponible,nombre,descripcion);
+               listTiendaProductos.add(produ);
                creado = true;
           }
           return creado;
      }
 
      /**
-      * Método para buscar un producto por código
+      * metodo para buscar el producto
+      * @param codigo del producto
+      * @return
       */
-     public Producto buscarProducto(int codigo) {
+
+     public Producto buscarProducto(int codigo){
           Producto encontrado = null;
-          for (int i = 0; i < listProductos.size(); i++) {
-               Producto producto = listProductos.get(i);
+          for (int i = 0; i < listTiendaProductos.size(); i++) {
+               Producto producto = listTiendaProductos.get(i);
                if (producto.getCodigo() == codigo) {
                     encontrado = producto;
                     break;
@@ -65,14 +79,21 @@ public class Tienda {
      }
 
      /**
-      * Método para actualizar los datos de un producto
+      * metodo para actualizar datos del producto
+      * @param codigo
+      * @param nuevoPrecio
+      * @param nuevaCantDisponible
+      * @param nuevoNombre
+      * @param nuevaDescripcion
+      * @return
       */
+
      public boolean actualizarProducto(int codigo, int nuevoPrecio, int nuevaCantDisponible, String nuevoNombre, String nuevaDescripcion) {
           boolean actualizado = false;
           Producto producto = buscarProducto(codigo);
           if (producto != null) {
                producto.setPrecio(nuevoPrecio);
-               producto.setCantDisponible(nuevaCantDisponible);
+               producto.setCantDisponile(nuevaCantDisponible);
                producto.setNombre(nuevoNombre);
                producto.setDescripcion(nuevaDescripcion);
                actualizado = true;
@@ -81,8 +102,8 @@ public class Tienda {
      }
 
      /**
-      * Método de eliminar Producto
-      * @param codigo
+      * Metodo para eliminar producto
+      * @param codigo del Producto
       * @return
       */
      public boolean eliminarProducto(int codigo) {
@@ -94,28 +115,37 @@ public class Tienda {
           return false;
      }
 
-     //PEDIDOS
+
+     //METODOS CRUD PEDIDOS
+
      /**
-      * Método para crear un pedido
+      * metodo para crear pedido
+      * @param numeroPedido
+      * @param fechaCreacion
+      * @param estado
+      * @param valorTotal
+      * @return
       */
-     public boolean crearPedido(int numeroPedido, String fechaCreacion, String estado, double valorTotal, Cliente cliente, Pago pago) {
+     public boolean crearPedido(int numeroPedido, String fechaCreacion, String estado, double valorTotal) {
           boolean creado = false;
           Pedido pedido = buscarPedido(numeroPedido);
           if (pedido == null) {
-               Pedido nuevoPedido = new Pedido(numeroPedido, fechaCreacion, estado, valorTotal, cliente, pago);
-               listPedidos.add(nuevoPedido);
+               Pedido nuevoPedido = new Pedido(numeroPedido, fechaCreacion, estado, valorTotal);
+               listTiendaPedidos.add(nuevoPedido);
                creado = true;
           }
           return creado;
      }
 
      /**
-      * Método para buscar un pedido por número de pedido
+      * metodo para buscar pedido
+      * @param numeroPedido
+      * @return
       */
      public Pedido buscarPedido(int numeroPedido) {
           Pedido encontrado = null;
-          for (int i = 0; i < listPedidos.size(); i++) {
-               Pedido pedido = listPedidos.get(i);
+          for (int i = 0; i < listTiendaPedidos.size(); i++) {
+               Pedido pedido = listTiendaPedidos.get(i);
                if (pedido.getNumeroPedido() == numeroPedido) {
                     encontrado = pedido;
                     break;
@@ -125,8 +155,13 @@ public class Tienda {
      }
 
      /**
-      * Método para actualizar el estado o datos de un pedido
+      *metodo para actualizar datos del pedido
+      * @param numeroPedido
+      * @param nuevoEstado
+      * @param nuevoValorTotal
+      * @return
       */
+
      public boolean actualizarPedido(int numeroPedido, String nuevoEstado, double nuevoValorTotal) {
           boolean actualizado = false;
           Pedido pedido = buscarPedido(numeroPedido);
@@ -139,27 +174,38 @@ public class Tienda {
      }
 
      /**
-      * Método para eliminar un pedido
+      *metodo para eliminar pedido
+      * @param numeroPedido
+      * @return
       */
      public boolean eliminarPedido(int numeroPedido) {
           Pedido pedido = buscarPedido(numeroPedido);
           if (pedido != null) {
-               listPedidos.remove(pedido);
+               listTiendaPedidos.remove(pedido);
                return true;
           }
           return false;
      }
 
-     //PAGOS
+
+     // METODOS CRUD PAGOS
+
      /**
-      * Método para registrar un pago
+      * metdodo para registrar pagos
+      * @param fechaPago
+      * @param metodoPago
+      * @param valorPagado
+      * @param estadoTransaccion
+      * @param pedido
+      * @return
       */
+
      public boolean crearPago(String fechaPago, String metodoPago, double valorPagado, String estadoTransaccion, Pedido pedido) {
           boolean creado = false;
           Pago pago = buscarPagoPorPedido(pedido.getNumeroPedido());
           if (pago == null) {
                Pago nuevoPago = new Pago(fechaPago, metodoPago, valorPagado, estadoTransaccion, pedido);
-               listPagos.add(nuevoPago);
+               listTiendaPagos.add(nuevoPago);
                creado = true;
           }
           return creado;
@@ -167,11 +213,13 @@ public class Tienda {
 
      /**
       * Método para buscar un pago asociado a un número de pedido
+      * @param numeroPedido
+      * @return
       */
      public Pago buscarPagoPorPedido(int numeroPedido) {
           Pago encontrado = null;
-          for (int i = 0; i < listPagos.size(); i++) {
-               Pago pago = listPagos.get(i);
+          for (int i = 0; i < listTiendaPagos.size(); i++) {
+               Pago pago = listTiendaPagos.get(i);
                if (pago.getPedido() != null && pago.getPedido().getNumeroPedido() == numeroPedido) {
                     encontrado = pago;
                     break;
@@ -182,7 +230,12 @@ public class Tienda {
 
      /**
       * Método para actualizar el estado del pago o método de pago
+      * @param numeroPedido
+      * @param nuevoEstadoTransaccion
+      * @param nuevoMetodoPago
+      * @return
       */
+
      public boolean actualizarPago(int numeroPedido, String nuevoEstadoTransaccion, String nuevoMetodoPago) {
           boolean actualizado = false;
           Pago pago = buscarPagoPorPedido(numeroPedido);
@@ -195,27 +248,36 @@ public class Tienda {
      }
 
      /**
-      * Método para eliminar/cancelar un pago
+      *  Método para eliminar/cancelar un pago
+      * @param numeroPedido del pago
+      * @return
       */
      public boolean eliminarPago(int numeroPedido) {
           Pago pago = buscarPagoPorPedido(numeroPedido);
           if (pago != null) {
-               listPagos.remove(pago);
+               listTiendaPagos.remove(pago);
                return true;
           }
           return false;
      }
 
-     //CLIENTES
+     // METODOS CRUD CLIENTES
+
      /**
-      * Método para crear un cliente
+      *  Metdoso para registrar un cliente
+      * @param nombre
+      * @param identificacion
+      * @param correo
+      * @param telefono
+      * @param direccion
+      * @return
       */
      public boolean crearCliente(String nombre, int identificacion, String correo, int telefono, String direccion) {
           boolean creado = false;
           Cliente cliente = buscarCliente(identificacion);
           if (cliente == null) {
                Cliente nuevoCliente = new Cliente(nombre, identificacion, correo, telefono, direccion);
-               listClientes.add(nuevoCliente);
+               listTiendaClientes.add(nuevoCliente);
                creado = true;
           }
           return creado;
@@ -223,11 +285,13 @@ public class Tienda {
 
      /**
       * Método para buscar un cliente por identificación
+      * @param identificacion del cliente
+      * @return
       */
      public Cliente buscarCliente(int identificacion) {
           Cliente encontrado = null;
-          for (int i = 0; i < listClientes.size(); i++) {
-               Cliente cliente = listClientes.get(i);
+          for (int i = 0; i < listTiendaClientes.size(); i++) {
+               Cliente cliente = listTiendaClientes.get(i);
                if (cliente.getIdentificacion() == identificacion) {
                     encontrado = cliente;
                     break;
@@ -258,19 +322,24 @@ public class Tienda {
      public boolean eliminarCliente(int identificacion) {
           Cliente cliente = buscarCliente(identificacion);
           if (cliente != null) {
-               listClientes.remove(cliente);
+               listTiendaClientes.remove(cliente);
                return true;
           }
           return false;
      }
 
-     //CARRITO
+     // METODOS CRUD CARRITO
+
      /**
       * Método para crear/agregar un item al Carrito
+      * @param cantidad
+      * @param precioAplicado
+      * @param subtotal
+      * @return
       */
      public boolean crearCarrito(int cantidad, double precioAplicado, double subtotal) {
           Carrito nuevoCarrito = new Carrito(cantidad, precioAplicado, subtotal);
-          listCarritos.add(nuevoCarrito);
+          listTiendacarrito.add(nuevoCarrito);
           return true;
      }
 
@@ -278,8 +347,8 @@ public class Tienda {
       * Método para buscar un elemento en el carrito por su posición (índice)
       */
      public Carrito buscarCarrito(int indice) {
-          if (indice >= 0 && indice < listCarritos.size()) {
-               return listCarritos.get(indice);
+          if (indice >= 0 && indice < listTiendacarrito.size()) {
+               return listTiendacarrito.get(indice);
           }
           return null;
      }
@@ -304,7 +373,7 @@ public class Tienda {
      public boolean eliminarCarrito(int indice) {
           Carrito carrito = buscarCarrito(indice);
           if (carrito != null) {
-               listCarritos.remove(carrito);
+               listTiendacarrito.remove(carrito);
                return true;
           }
           return false;

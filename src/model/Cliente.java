@@ -79,7 +79,7 @@ public class Cliente {
     }
 
     @java.lang.Override
-    public java.lang.String toString() {
+    public String toString() {
         return "Cliente{" +
                 "nombre='" + nombre + '\'' +
                 ", identificacion=" + identificacion +

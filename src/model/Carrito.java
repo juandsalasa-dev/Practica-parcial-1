@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Carrito {
@@ -12,20 +13,20 @@ public class Carrito {
     private List<Producto> listCarritoProductos;
 
     /**
-     * Método Constructor de Carrito
+     *  Método Constructor de Carrito
      * @param cantidad
      * @param precioAplicado
      * @param subtotal
-     * @param listCarritoProductos
      */
-    public Carrito(int cantidad, double precioAplicado, double subtotal, List<Producto> listCarritoProductos) {
+    public Carrito(int cantidad, double precioAplicado, double subtotal) {
         this.cantidad = cantidad;
         this.precioAplicado = precioAplicado;
         this.subtotal = subtotal;
-        this.listCarritoProductos = listCarritoProductos;
+        this.listCarritoProductos = new ArrayList<>();
     }
 
     //GETTERS & SETTERS
+
 
     public int getCantidad() {
         return cantidad;
@@ -58,7 +59,6 @@ public class Carrito {
     public void setListCarritoProductos(List<Producto> listCarritoProductos) {
         this.listCarritoProductos = listCarritoProductos;
     }
-
 
     @java.lang.Override
     public java.lang.String toString() {
